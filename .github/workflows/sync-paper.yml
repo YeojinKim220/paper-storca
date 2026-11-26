@@ -19,7 +19,7 @@ jobs:
       - name: Checkout Paper Studio indexer
         uses: actions/checkout@v4
         with:
-          repository: YOUR_GITHUB_USER/paper-studio
+          repository: YeojinKim220/paper-studio
           token: ${{ secrets.PAPER_STUDIO_READ_TOKEN }}
           path: .paper-studio
 
