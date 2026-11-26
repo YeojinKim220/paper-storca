@@ -1,0 +1,52 @@
+name: Sync Paper Studio Snapshot & Assets
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'paper.json'
+      - '**/*.md'
+      - 'figures/**'
+  workflow_dispatch:
+
+jobs:
+  build-and-upload:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout manuscript repository
+        uses: actions/checkout@v4
+
+      - name: Checkout Paper Studio indexer
+        uses: actions/checkout@v4
+        with:
+          repository: YOUR_GITHUB_USER/paper-studio
+          token: ${{ secrets.PAPER_STUDIO_READ_TOKEN }}
+          path: .paper-studio
+
+      - name: Install poppler-utils for PDF figure previews
+        run: sudo apt-get update && sudo apt-get install -y poppler-utils
+
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install and build Paper Studio CLI
+        working-directory: .paper-studio
+        run: |
+          npm ci
+          npm --workspace=@paper-studio/core run build
+          npm --workspace=@paper-studio/cli run build
+
+      - name: Render PDF previews and upload graph + assets
+        env:
+          PAPER_STUDIO_URL: ${{ secrets.PAPER_STUDIO_URL }}
+          PAPER_SYNC_TOKEN: ${{ secrets.PAPER_SYNC_TOKEN }}
+          PROJECT_SLUG: storca
+        run: |
+          node .paper-studio/packages/cli/dist/bin.js snapshot \
+            --paper paper.json \
+            --url "$PAPER_STUDIO_URL" \
+            --slug "$PROJECT_SLUG" \
+            --render-pdfs \
+            --no-git

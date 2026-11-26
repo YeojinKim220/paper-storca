@@ -1,0 +1,237 @@
+{
+  "version": 2,
+  "id": "storca",
+  "title": "stORCA Manuscript Workspace",
+  "root": ".",
+  "docs": [
+    {
+      "id": "results-fig2",
+      "tier": "main",
+      "short": "Results Fig. 2",
+      "title": "Results: Figure 2 (Controlled Benchmarks)",
+      "en": "main/02-results-fig2.md",
+      "ko": "main/02-results-fig2.ko.md",
+      "role": "results",
+      "description": "Main-text Results section and legend for synthetic and DLPFC benchmarks"
+    },
+    {
+      "id": "results-fig5",
+      "tier": "main",
+      "short": "Results Fig. 5",
+      "title": "Results: Figure 5 (Pattern/Amplitude & Biology)",
+      "en": "main/05-results-fig5.md",
+      "ko": "main/05-results-fig5.ko.md",
+      "role": "results",
+      "description": "Main-text Results section and legend for ROS factorization, localization, and DE overlap"
+    },
+    {
+      "id": "methods",
+      "tier": "main",
+      "short": "Methods",
+      "title": "Methods: stORCA",
+      "en": "main/06-methods.md",
+      "ko": "main/06-methods.ko.md",
+      "role": "methods",
+      "description": "Main-text Methods covering SysVI, partial OT, ROS, factorization, and limma test"
+    },
+    {
+      "id": "methods-supp",
+      "tier": "supplementary",
+      "short": "Supp Methods",
+      "title": "Supplementary Methods (Figures 2 to 5)",
+      "en": "supp/s01-methods-supp.md",
+      "ko": "supp/s01-methods-supp.ko.md",
+      "role": "supplementary",
+      "description": "Detailed simulation settings, DLPFC implant equations, and benchmark metrics"
+    },
+    {
+      "id": "outline",
+      "tier": "internal",
+      "short": "Outline",
+      "title": "Manuscript Plan (Nat Commun)",
+      "en": "internal/outline.md",
+      "ko": "internal/outline.ko.md",
+      "role": "outline",
+      "description": "Internal claim hierarchy, competitor landscape, and manuscript roadmap"
+    },
+    {
+      "id": "figure-plan",
+      "tier": "internal",
+      "short": "Figure Plan",
+      "title": "Figure Blueprint (5 Main Figures)",
+      "en": "internal/figure-plan.md",
+      "ko": "internal/figure-plan.ko.md",
+      "role": "outline",
+      "description": "Internal panel-by-panel blueprint for Main Figures 1–5 and Supplementary Figures"
+    },
+    {
+      "id": "methods-v3-supp",
+      "tier": "internal",
+      "short": "Supp Archive (v3)",
+      "title": "Supplementary Methods v3 (Archive Reference)",
+      "en": "internal/supp-methods-v3-archive.md",
+      "ko": "internal/supp-methods-v3-archive.ko.md",
+      "role": "notes",
+      "description": "Earlier supplementary draft kept as internal reference for S1 and S3–S5 before v4 rewrite"
+    },
+    {
+      "id": "q1",
+      "tier": "internal",
+      "short": "Q1",
+      "title": "Q1: Unmatched Cells",
+      "en": "internal/q1-unmatched-cells.md",
+      "ko": "internal/q1-unmatched-cells.ko.md",
+      "role": "evidence",
+      "description": "Internal analysis report on tissue without a counterpart (Colitis, Cortex, HPOA)"
+    },
+    {
+      "id": "q2",
+      "tier": "internal",
+      "short": "Q2",
+      "title": "Q2: Replicate Calibration",
+      "en": "internal/q2-replicate-calibration.md",
+      "ko": "internal/q2-replicate-calibration.ko.md",
+      "role": "evidence",
+      "description": "Internal analysis report on false positives across replicates and 2x2 ablation"
+    },
+    {
+      "id": "q3",
+      "tier": "internal",
+      "short": "Q3",
+      "title": "Q3: Beyond DE",
+      "en": "internal/q3-beyond-de.md",
+      "ko": "internal/q3-beyond-de.ko.md",
+      "role": "evidence",
+      "description": "Internal analysis report comparing stORCA calls against pseudobulk DE and DESpace2"
+    },
+    {
+      "id": "q4",
+      "tier": "internal",
+      "short": "Q4",
+      "title": "Q4: Effect Size",
+      "en": "internal/q4-effect-size.md",
+      "ko": "internal/q4-effect-size.ko.md",
+      "role": "evidence",
+      "description": "Internal analysis report on cross-comparison Delta effect size (currently on hold)"
+    },
+    {
+      "id": "q5",
+      "tier": "internal",
+      "short": "Q5",
+      "title": "Q5: Pattern & Amplitude Interpretation",
+      "en": "internal/q5-interpretation.md",
+      "ko": "internal/q5-interpretation.ko.md",
+      "role": "evidence",
+      "description": "Internal analysis report on (rho, kappa) factorization and local Moran hotspots"
+    }
+  ],
+  "figures": [
+    {
+      "id": "fig:1",
+      "number": 1,
+      "label": "Fig. 1",
+      "tier": "main",
+      "title": "Problem definition and stORCA overview",
+      "docId": "figure-plan",
+      "assets": [
+        { "path": "figures/fig1-storca-overview-nov24.png", "label": "Overview", "panels": ["a", "b", "c", "d", "e"] }
+      ]
+    },
+    {
+      "id": "fig:2",
+      "number": 2,
+      "label": "Fig. 2",
+      "tier": "main",
+      "title": "stORCA detects diverse spatial changes and ignores global shifts",
+      "docId": "results-fig2",
+      "assets": [
+        { "path": "figures/fig2a-v2-synthetic-scenarios.png", "label": "Panel 2a: Synthetic scenarios", "panels": ["a"] },
+        { "path": "figures/fig2b-v3-synthetic-1v1-heatmap-s1.png", "label": "Panel 2b: Detection & decoy specificity", "panels": ["b"] },
+        { "path": "figures/fig2c-v3-synthetic-1v1-auroc-curves.png", "label": "Panel 2c: AUROC curves across strengths", "panels": ["c"] },
+        { "path": "figures/fig2e-v3-dlpfc-auroc.png", "label": "Panel 2d: DLPFC implants AUROC", "panels": ["d"] },
+        { "path": "figures/fig2f-v3-dlpfc-auroc-curves.png", "label": "Panel 2e: DLPFC trajectories L1-L3", "panels": ["e"] }
+      ]
+    },
+    {
+      "id": "fig:3",
+      "number": 3,
+      "label": "Fig. 3",
+      "tier": "main",
+      "title": "Replicate calibration prevents false positives",
+      "docId": "outline",
+      "assets": [
+        { "path": "figures/fig3a-storca-true-vs-false.png", "label": "Panel 3a: True vs false label swaps", "panels": ["a", "b"] },
+        { "path": "figures/fig3c-variance-ratio.png", "label": "Panel 3c: Variance ratio", "panels": ["c", "d", "e", "f"] }
+      ]
+    },
+    {
+      "id": "fig:4",
+      "number": 4,
+      "label": "Fig. 4",
+      "tier": "main",
+      "title": "Partial OT and symmetric thinning avoid unmatched-tissue bias",
+      "docId": "outline",
+      "assets": [
+        { "path": "figures/fig4a-colitis-retained-mass.png", "label": "Panel 4a: Colitis retained mass", "panels": ["a"] },
+        { "path": "figures/fig4b-cortex-retained-mass.png", "label": "Panel 4b: Cortex retained mass", "panels": ["b"] },
+        { "path": "figures/fig4c-real-marker-ranking.png", "label": "Panel 4c: Marker ranking", "panels": ["c", "d"] }
+      ]
+    },
+    {
+      "id": "fig:5",
+      "number": 5,
+      "label": "Fig. 5",
+      "tier": "main",
+      "title": "stORCA types and locates each change, beyond what DE calls",
+      "docId": "results-fig5",
+      "assets": [
+        { "path": "figures/fig5a-1-synthetic-decomposition.png", "label": "Panel 5a: Synthetic rho-kappa validation", "panels": ["a"] },
+        { "path": "figures/fig5b-1-real-rho-kappa-plane.png", "label": "Panel 5b: Real datasets rho-kappa plane", "panels": ["b"] },
+        { "path": "figures/fig5c-1-nrdr-local-moran-examples.png", "label": "Panel 5c: NRDR local Moran hotspots", "panels": ["c"] },
+        { "path": "figures/fig5d-de-dse-overlap-and-types.png", "label": "Panel 5d: DE & DESpace2 overlap", "panels": ["d"] },
+        { "path": "figures/fig5e-1-non-global-de-examples.png", "label": "Panel 5e: NRDR examples", "panels": ["e"] },
+        { "path": "figures/fig5f-biological-validation-and-laminar-shift.png", "label": "Panel 5f: Biological check", "panels": ["f"] }
+      ]
+    },
+    {
+      "id": "supp-fig:2",
+      "number": 2,
+      "label": "Supp. Fig. 2",
+      "tier": "supplementary",
+      "title": "Supplementary benchmark metrics (AUPRC & top-ranked decoys)",
+      "docId": "methods-supp",
+      "assets": [
+        { "path": "figures/figs2-v3-synthetic-auroc-auprc-sd-s1.png", "label": "Supplementary Fig. 2", "panels": ["a", "b", "c", "d", "e"] }
+      ]
+    },
+    {
+      "id": "supp-fig:3",
+      "number": 3,
+      "label": "Supp. Fig. 3",
+      "tier": "supplementary",
+      "title": "Balanced vs partial OT and thinning stability",
+      "docId": "methods-v3-supp",
+      "assets": [
+        { "path": "figures/figs3a-balanced-ot-ablation.png", "label": "Panel S3a: Balanced OT ablation", "panels": ["a"] },
+        { "path": "figures/figs3b-coda-common-cells.png", "label": "Panel S3b: CODA common cells", "panels": ["b"] },
+        { "path": "figures/figs3d-topk-and-thinning-stability.png", "label": "Panel S3d: Thinning stability", "panels": ["d"] }
+      ]
+    }
+  ],
+  "datasetAliases": {
+    "LIBD DLPFC": ["LIBD DLPFC", "LIBD", "DLPFC"],
+    "HPOA": ["HPOA"],
+    "NRDR V1": ["NRDR V1", "NRDR"],
+    "ARTISTA": ["ARTISTA"],
+    "Colitis": ["Colitis D0 vs D3", "Colitis D0 vs D9", "colitis", "Colitis"],
+    "Cortex stab wound": ["cortex stab wound", "Cortex stab wound", "cortical injury", "cortex 3 dpi"],
+    "STARmap PLUS AD": ["STARmap PLUS AD", "STARmap"]
+  },
+  "terms": {
+    "ROS": "methods#the-residual-to-original-spatial-ratio-ros",
+    "SysVI": "methods#learning-a-shared-cell-state-for-each-pair",
+    "partial optimal transport": "methods#matching-tissue-with-partial-optimal-transport",
+    "limma": "methods#testing-condition-effects-across-replicate-sections",
+    "factorization": "methods#separating-pattern-and-amplitude"
+  }
+}
