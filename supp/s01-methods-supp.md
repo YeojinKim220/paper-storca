@@ -1,6 +1,4 @@
-# Supplementary Methods (Figures 2 to 5)
-
-This document collects every setting behind Figures 2 to 5, written in the project manuscript style (`.claude/skills/manuscript-style/SKILL.md`). Section S2 (Figure 2) is complete; sections for Figures 3 to 5 will be added. It replaces the supplementary sections of `0-method-v3-supplementary.md`. The algorithm is in the main Methods ([English](0-method-v4.md) · [한국어](0-method-v4.ko.md)); the Figure 2 Results text and legend are in the current draft ([English](0-results-fig2-v4.md) · [한국어](0-results-fig2-v4.ko.md)).
+# Supplementary Methods
 
 ## S2. Controlled benchmarks (Figure 2)
 
@@ -42,7 +40,7 @@ where $S_{ig}$ is the gene's domain or cell-type indicator centered over the sec
 
 The within-domain shift moves expression from one side of domain A to the other while keeping the domain mean nearly unchanged; the boundary band changes 2 of 60 columns. These two scenarios therefore test changes that a test of domain means cannot see. At $s=0$ no gene changes; the designated focal genes are kept only to check that no method ranks them first before a change exists.
 
-**Replicates and seeds.** For each scenario and strength we generated three sections per condition. Gene parameters were shared across strengths, conditions and replicates (base seed 20261124, offset by scenario). Cell-type assignments, cell-level noise and count sampling had their own seeds per scenario, replicate and condition, and these seeds were reused across strengths, so that the strength series differs only in $s$. Generator: [01-make-v3.py](../3-BM-DSE-Scenario-v3/01-data-generation/01-make-v3.py).
+**Replicates and seeds.** For each scenario and strength we generated three sections per condition. Gene parameters were shared across strengths, conditions and replicates (base seed 20261124, offset by scenario). Cell-type assignments, cell-level noise and count sampling had their own seeds per scenario, replicate and condition, and these seeds were reused across strengths, so that the strength series differs only in $s$.
 
 ### S2.3. Running the methods on simulated tissue
 
@@ -57,7 +55,7 @@ Four of the six comparison methods (CODA, STcompare, River and SpaceExpress in i
 | SpaceExpress | One section pair | Paired model, 4 embedding dimensions, 100 epochs, spline degrees of freedom 300, seed $41+r$; genes flagged by its zero-variance check after outlier filtering removed | Negative FDR |
 | DESpace2 | All three sections per condition | Simulated domain labels as the domain key, seed 42 | Quasi-likelihood $F$ statistic |
 
-DESpace2 requires domain labels and uses replicate sections, so it was given the true domains and all six sections and contributes one ranking per scenario and strength. A uniform-marginal transport plan for stORCA was computed as a sensitivity check and is not shown in Figure 2 (AUROC within 0.03 of the partial plan at strength 1). Runner: [03-run-methods.py](../3-BM-DSE-Scenario-v3/03-run-methods.py); stORCA: [02-run-storca-1v1.py](../3-BM-DSE-Scenario-v3/02-run-storca-1v1.py).
+DESpace2 requires domain labels and uses replicate sections, so it was given the true domains and all six sections and contributes one ranking per scenario and strength. A uniform-marginal transport plan for stORCA was computed as a sensitivity check and is not shown in Figure 2 (AUROC within 0.03 of the partial plan at strength 1).
 
 ### S2.4. Metrics on simulated tissue
 
@@ -65,36 +63,36 @@ DESpace2 requires domain labels and uses replicate sections, so it was given the
 
 **Global-shift specificity (Figure 2b right).** We computed AUROC of the ten focal genes against the ten decoys, and counted decoys and focal genes among the 15 highest-ranked of all 120 genes.
 
-Each metric was computed per section pair and then averaged over the three pairs; DESpace2 contributes its single value. The heatmaps use $s=1$; the curves use all five strengths. Collector: [06-collect-v3.py](../3-BM-DSE-Scenario-v3/06-collect-v3.py); values: [v3-summary-by-strength.csv](../3-BM-DSE-Scenario-v3/res/v3-summary-by-strength.csv); panels: [02b-fig2-v3-synthetic-panels.py](02b-fig2-v3-synthetic-panels.py).
+Each metric was computed per section pair and then averaged over the three pairs; DESpace2 contributes its single value. The heatmaps use $s=1$; the curves use all five strengths.
 
 ### S2.5. Implanted changes in human cortex
 
-**Sections and design.** We used six LIBD DLPFC Visium sections from three donors with two sections each: 151507, 151669 and 151673 as controls and 151509, 151671 and 151675 as treated, in matching donor order. We kept the measured coordinates, the manual layer labels and the common 3,000-gene panel, and changed counts only in the three treated sections. Each donor therefore contributes one control and one treated section, and the comparison between conditions includes the real variation between sections of one donor and between donors.
+**Sections and design.** We used six LIBD DLPFC Visium sections from three donors with two sections each: 151507, 151669 and 151673 as controls and 151509, 151671 and 151675 as treated, in matching donor order. We kept the measured coordinates, the manual layer labels and the common 3,000-gene panel, and changed only the counts of 40 selected genes. Each donor therefore contributes one control and one treated section, and the comparison between conditions includes the real variation between sections of one donor and between donors. We implanted the three spatial changes and the global shift of the simulated benchmark (Supplementary Methods S2.2), with cortical layers in the role of domains and the same log-scale strengths $s\in\{0.5,1,1.5,2\}$ (levels 1 to 4).
 
-**Genes.** From genes kept by the stORCA Moran filter on the unchanged sections and with mean count at least 0.2, we drew ten genes for each change and 20 decoys (seed 20261118). We used the ratio of a gene's largest layer mean to its section mean, averaged over the three treated sections. Genes with ratio at least 2 (strongly layered) received the amplitude and relocation changes, which need a laminar pattern to act on; genes with ratio below 1.5 received the layer-3 increase, half-layer increase and redistribution, so that the change is not hidden by an existing layer-3 pattern. Decoys were ten genes from each of the two strata (ratio at least 2, below 1.5). The same genes were used at all three levels. Truth table: [implant-truth-v2.csv](../1-BM-DSE-Semi-LIBD/res/implant-truth-v2.csv).
+**Genes.** We started from the genes kept by the stORCA Moran filter on the unmodified sections, without mitochondrial and ribosomal protein genes (MT-, RPS and RPL; 1,061 genes), and kept those with mean count at least 0.3 over the spots of the layers present in all six sections (layers 3 to 6 and white matter; 191 genes). For each gene we measured layer enrichment as in the pseudobulk analysis of [Maynard et al., 2021](https://doi.org/10.1038/s41593-020-00787-0): in each section we summed counts per layer, converted the sums to log2 counts per million, and took the difference between one layer and the mean of the other layers; this log2 fold change was averaged over the six sections. We used only genes without a layer pattern, defined as an absolute log2 fold change below 0.5 in every layer (77 genes). With unpatterned genes, the only layer structure in an implanted gene is the one we placed, and a global shift cannot change the visible contrast of an existing pattern. The ten unpatterned genes with the highest mean count received the within-layer shift, because the shift moves existing counts and needs enough of them to move. A random draw from the remaining genes (seed 20261126) gave ten genes each for the amplitude change, the layer DE change and the global shift. Amplitude genes were assigned in turn to layers 3, 4, 5 and 6, the cortical layers present in every donor (three, three, two and two genes). The same genes were used at all four levels.
 
-**Changes.** In each treated section, let $m_l$ be the gene's mean in layer $l$, $\bar m$ its mean over all spots, and A and B the two halves of layer 3. Levels 1, 2 and 3 used $(s,a,t)=(0.5,0.25,1/3)$, $(1,0.5,2/3)$ and $(1.5,0.75,1)$.
+**Base patterns in both conditions.** In the simulated benchmark every changed gene already has a spatial pattern in both conditions, and the amplitude and within-domain changes act on that pattern. We therefore first gave amplitude and within-shift genes a layer pattern in all six sections: each spot of the gene's layer (its assigned layer for amplitude genes, layer 5 for within-shift genes) had its expected count scaled by $e^{1}$. The base was drawn once per section and used at every level, so the control sections are the same at all levels. Layer DE genes and decoys had no base pattern.
 
-| Change (panel label) | Target mean in the treated section |
-|---|---|
-| Layer-3 increase (Domain DE) | $m_3\,e^{s}$ |
-| Half-layer increase (Within shift) | Mean of half A of layer 3 times $e^{s}$ |
-| Weaker laminar pattern (Amplitude) | Each layer: $\bar m+(1-a)(m_l-\bar m)$ |
-| Relocation (Relocation) | Over the layers present in all donors (3, 4, 5, 6, white matter), layer $i$ receives $(1-t)\,m_i+t\,m_{(i+2)\bmod 5}$ |
-| Redistribution within layer 3 (Pure shift) | $m'_B=(1-t)\,m_B$ and $m'_A=m_A+t\,m_B\,n_B/n_A$; the expected layer total is kept |
-| Global shift (decoy) | Every layer: $m_l\,e^{s}$ |
+**Changes.** In each treated section, on top of the base, let $m_5$ be the gene's mean in layer 5, and $m_A$ and $m_B$ the means of the deep and superficial halves of layer 5, with $n_A$ and $n_B$ spots.
 
-The half-layer increase also raises the layer-3 mean, whereas the redistribution keeps it. The redistribution is therefore the change that a test of layer means cannot see.
+| Change (panel label) | Treated section | Simulated counterpart |
+|---|---|---|
+| Layer DE | Layer-5 mean raised to $m_5\,e^{s}$ | Domain DE |
+| Within shift | $m'_B=(1-t)\,m_B$ and $m'_A=m_A+t\,m_B\,n_B/n_A$, with $t=1-e^{-s}$; the expected layer-5 total is kept | Within-domain shift |
+| Amplitude change | Each spot of the assigned layer scaled by $e^{s}$, so the base pattern rises from $e^{1}$ to $e^{1+s}$ | Amplitude increase |
+| Global shift (decoy) | Every spot scaled by $e^{s}$ | Decoys |
 
-**Same anatomy in every donor.** The two halves of layer 3 were defined by the first principal axis of the layer-3 spot coordinates, split at the median. To make half A the same anatomical half in all three donors, we rotated the vector from the white-matter centroid to the layer-3 centroid by 90 degrees and oriented the principal axis to point along this tangent. Relocation used one cyclic permutation over the five layers present in all donors, so that each layer received expression from the same source layer in every donor. An earlier version (imp3v2) flipped half A in one donor and permuted different layer sets across donors; Figure 2 uses the corrected version (imp3v3).
+With $t=1-e^{-s}$ the superficial half falls by $s$ on the log scale ($t=0.39$, 0.63, 0.78 and 0.86 at levels 1 to 4), matching the $+s$ of the simulated shift. The within shift keeps the layer-5 mean, so a test of layer means cannot see it, whereas the layer DE change raises the layer-5 mean.
 
-**Count operations.** To raise a group mean from $m$ to $m'$ we added independent Poisson counts with mean $m'-m$ to each spot; to lower it we thinned each count binomially with probability $m'/m$. Spots outside the changed groups and all control sections were untouched. The random generator was seeded with (20261121, section, level). Generator: [06-make-implant-v3.py](../1-BM-DSE-Semi-LIBD/06-make-implant-v3.py); targets and achieved means: [implant-targets-v3.csv](../1-BM-DSE-Semi-LIBD/res/implant-targets-v3.csv).
+**Same anatomy in every donor.** We placed the layer DE change and the within shift in layer 5 because it is present in all sections of the three donors, whereas layers 1 and 2 are missing in one donor. The depth of a layer-5 spot was its distance to the nearest layer-4 spot, and the deep half consisted of the spots with depth above the median. The shift therefore moves expression toward layer 6 in every section, with no orientation step.
+
+**Count operations.** To scale the expected count of a spot by a factor $f>1$, we added a Poisson count with mean $(f-1)\,x$ to its observed count $x$; scaling every spot of a region in this way keeps the shape of the pattern within it. To raise a group mean from $m$ to $m'$ (layer DE, deep half), we added independent Poisson counts with mean $m'-m$ to each spot; to lower it (superficial half), we thinned each count binomially with probability $m'/m$. Spots outside the changed regions and genes outside the 40 selected were untouched, and control sections carried only the base patterns. The random generator was seeded with (20261126, section, 0) for the base and (20261126, section, level) for the changes.
 
 ### S2.6. Running the methods on cortex implants
 
-**stORCA.** stORCA used the replicate design of the main Methods on nine between-condition and six within-condition pairs (SysVI 400 epochs, batch 128; ROS clipped to $[0,2]$; Moran and denominator filter; within-condition thinning by source-cell availability; limma with variance trend; one-sided test). Genes were ranked by the moderated $t$ statistic of the between-condition effect, and calls were made at one-sided BH-adjusted $P<0.05$. We also refitted the contrast for the nine reassignments of whole sections that differ from the true grouping.
+**stORCA.** At each of the four levels, stORCA used the replicate design of the main Methods (Methods) on nine between-condition and six within-condition pairs (SysVI 400 epochs, batch 128; ROS clipped to $[0,2]$; Moran and denominator filter; within-condition thinning by source-cell availability; limma with variance trend; one-sided test). Genes were ranked by the moderated $t$ statistic of the between-condition effect, and calls were made at one-sided BH-adjusted $P<0.05$. We also refitted the contrast for the nine reassignments of whole sections that differ from the true grouping.
 
-**Comparison methods.** Each method was run at its published defaults. CODA (seed 42), River (100 epochs, seed 42), SpaceExpress (4 embedding dimensions, 100 epochs, spline degrees of freedom 300, seed 42) and STcompare (square raster of resolution 310, seed 42) were run on each of the nine between-condition pairs, and their oriented scores were averaged over the pairs. Because implants change counts but not coordinates, STcompare reused one coordinate-only STalign transform per pair across levels. DESpace2 (seed 42) was run once per level on all six sections, with the manual layer labels as the domain key. These are the same labels from which the implanted regions were defined, so DESpace2 is given the exact domains of four of the five changes. Runner: [07-run-imp3v3.py](../1-BM-DSE-Semi-LIBD/07-run-imp3v3.py).
+**Comparison methods.** Each method was run at its published defaults. CODA (seed 42), River (100 epochs, seed 42), SpaceExpress (4 embedding dimensions, 100 epochs, spline degrees of freedom 300, seed 42) and STcompare (square raster of resolution 310, seed 42) were run on each of the nine between-condition pairs, and their oriented scores were averaged over the pairs. Because implants change counts but not coordinates, STcompare reused one coordinate-only STalign transform per pair across levels. DESpace2 (seed 42) was run once per level on all six sections, with the manual layer labels as the domain key. These are the labels from which the implanted regions were defined, so DESpace2 is given the exact layer of the layer DE and amplitude changes; the within shift stays inside layer 5 and keeps its mean.
 
 ### S2.7. Metrics on cortex implants
 
@@ -107,7 +105,7 @@ All methods were evaluated on the same genes: those tested by stORCA at each lev
 | AUROC against decoys | All implanted genes | The 20 decoys | 2d right |
 | Top-50 composition | Implanted genes and decoys counted among the 50 highest-ranked genes | | Supplementary Fig. S2 |
 
-For stORCA we also counted calls among implanted genes, unchanged genes and decoys, and the largest number of calls over the nine reassignments. Collector: [08-collect-imp3v3.py](../1-BM-DSE-Semi-LIBD/08-collect-imp3v3.py); values: [imp3v3-summary-metrics.csv](../1-BM-DSE-Semi-LIBD/res/imp3v3-summary-metrics.csv); panels: [02d-fig2-dlpfc-imp3v3-panels.py](02d-fig2-dlpfc-imp3v3-panels.py).
+For stORCA we also counted calls among implanted genes, unchanged genes and decoys, and the largest number of calls over the nine reassignments.
 
 ### S2.8. Scope of the two benchmarks
 

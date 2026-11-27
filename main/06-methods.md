@@ -1,10 +1,4 @@
-# Methods: stORCA
-
-Main-text Methods for the stORCA algorithm, written in the project manuscript
-style (`.claude/skills/manuscript-style/SKILL.md`). It replaces the algorithm
-sections (2 to 4) of `0-method-v3.md`; the dataset and case-study sections of
-that file are unchanged. Panel-level settings for Figure 2 are in the
-Supplementary Methods ([English](0-method-v4-supplementary.md) · [한국어](0-method-v4-supplementary.ko.md)).
+# Methods
 
 ## Overview
 
@@ -98,4 +92,4 @@ For Figure 2 we generated simulated tissues with six designed changes and implan
 
 ## Software
 
-stORCA used Python 3.11, scvi-tools 1.4.2, PyTorch 2.8.0, Scanpy 1.11.5 and AnnData 0.12.6, with the transport scaling in double precision and a Python implementation of the limma empirical Bayes procedure. The code stores the transport marginals, sampled matchings and per-matching quadratic forms, so that every pair score and its decomposition can be recomputed without refitting a model. [Replicate analysis](../storca/replicate_case_studies.py) · [Scoring](../storca/scoring.py) · [Variance moderation](../storca/limma.py) · [Decomposition](../storca/interpret.py)
+stORCA used Python 3.11, scvi-tools 1.4.2, PyTorch 2.8.0, Scanpy 1.11.5 and AnnData 0.12.6, with the transport scaling in double precision and a Python implementation of the limma empirical Bayes procedure. The code stores the transport marginals, sampled matchings and per-matching quadratic forms, so that every pair score and its decomposition can be recomputed without refitting a model.

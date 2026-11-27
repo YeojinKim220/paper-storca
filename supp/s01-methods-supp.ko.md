@@ -1,6 +1,4 @@
-# 보충 방법 (Figure 2 to 5)
-
-이 문서는 Figure 2 to 5 뒤의 모든 설정을 프로젝트 원고 문체(`.claude/skills/manuscript-style/SKILL.md`)로 모읍니다. S2 섹션(Figure 2)은 완성되었고, Figure 3 to 5 섹션은 추가될 예정입니다. `0-method-v3-supplementary.md`의 보충 섹션을 대체합니다. 알고리즘은 본문 Methods([English](0-method-v4.md) · [한국어](0-method-v4.ko.md))에, Figure 2 결과 문단과 legend는 현재 초안([English](0-results-fig2-v4.md) · [한국어](0-results-fig2-v4.ko.md))에 있습니다.
+# Supplementary Methods
 
 ## S2. 통제된 benchmark (Figure 2)
 
@@ -42,7 +40,7 @@ $S_{ig}$는 section 안에서 centering한 유전자의 domain 또는 cell type 
 
 domain 내부 shift는 domain 평균을 거의 바꾸지 않은 채 발현을 domain A의 한쪽에서 다른 쪽으로 옮기고, 경계 띠는 60개 열 중 2개만 바꿉니다. 그래서 이 두 시나리오는 domain 평균 검정이 볼 수 없는 변화를 검정합니다. $s=0$에서는 어떤 유전자도 바뀌지 않으며, 지정된 focal 유전자는 변화가 없을 때 어떤 방법도 그것들을 맨 위에 두지 않는지 확인하는 용도로만 남겨 두었습니다.
 
-**Replicate과 seed.** 시나리오와 강도마다 조건당 section 세 장을 생성했습니다. 유전자 파라미터는 강도, 조건, replicate에 걸쳐 공유했습니다(기본 seed 20261124, 시나리오별 offset). cell type 배정, 세포 수준 noise, count sampling은 시나리오, replicate, 조건마다 각자의 seed를 가졌고, 이 seed를 강도에 걸쳐 재사용해 강도 계열이 $s$에서만 다르도록 했습니다. 생성기: [01-make-v3.py](../3-BM-DSE-Scenario-v3/01-data-generation/01-make-v3.py).
+**Replicate과 seed.** 시나리오와 강도마다 조건당 section 세 장을 생성했습니다. 유전자 파라미터는 강도, 조건, replicate에 걸쳐 공유했습니다(기본 seed 20261124, 시나리오별 offset). cell type 배정, 세포 수준 noise, count sampling은 시나리오, replicate, 조건마다 각자의 seed를 가졌고, 이 seed를 강도에 걸쳐 재사용해 강도 계열이 $s$에서만 다르도록 했습니다.
 
 ### S2.3. Simulated tissue에서 방법 실행
 
@@ -57,7 +55,7 @@ domain 내부 shift는 domain 평균을 거의 바꾸지 않은 채 발현을 do
 | SpaceExpress | section 쌍 하나 | paired 모형, embedding 4차원, 100 epoch, spline 자유도 300, seed $41+r$; outlier filter 후 zero-variance 검사에서 표시된 유전자 제거 | 음의 FDR |
 | DESpace2 | 조건당 section 세 장 전부 | simulated domain label을 domain key로, seed 42 | Quasi-likelihood $F$ 통계량 |
 
-DESpace2는 domain label이 필요하고 replicate section을 쓰므로, 정답 domain과 section 여섯 장 전부를 받았으며 시나리오와 강도마다 순위 하나를 냅니다. stORCA의 균일 marginal transport plan은 민감도 확인으로 계산했고 Figure 2에는 보이지 않습니다(강도 1에서 partial plan과 AUROC 차이 0.03 이내). 실행기: [03-run-methods.py](../3-BM-DSE-Scenario-v3/03-run-methods.py); stORCA: [02-run-storca-1v1.py](../3-BM-DSE-Scenario-v3/02-run-storca-1v1.py).
+DESpace2는 domain label이 필요하고 replicate section을 쓰므로, 정답 domain과 section 여섯 장 전부를 받았으며 시나리오와 강도마다 순위 하나를 냅니다. stORCA의 균일 marginal transport plan은 민감도 확인으로 계산했고 Figure 2에는 보이지 않습니다(강도 1에서 partial plan과 AUROC 차이 0.03 이내).
 
 ### S2.4. Simulated tissue 지표
 
@@ -65,36 +63,36 @@ DESpace2는 domain label이 필요하고 replicate section을 쓰므로, 정답 
 
 **Global shift 특이도(Figure 2b 오른쪽).** focal 유전자 10개 대 decoy 10개의 AUROC를 계산했고, 유전자 120개 전체 중 상위 15개 안의 decoy와 focal 유전자 수를 셌습니다.
 
-각 지표는 section 쌍마다 계산한 뒤 세 쌍에 걸쳐 평균했고, DESpace2는 하나의 값을 냅니다. heatmap은 $s=1$, 곡선은 다섯 강도 전부를 사용합니다. 수집기: [06-collect-v3.py](../3-BM-DSE-Scenario-v3/06-collect-v3.py); 값: [v3-summary-by-strength.csv](../3-BM-DSE-Scenario-v3/res/v3-summary-by-strength.csv); 패널: [02b-fig2-v3-synthetic-panels.py](02b-fig2-v3-synthetic-panels.py).
+각 지표는 section 쌍마다 계산한 뒤 세 쌍에 걸쳐 평균했고, DESpace2는 하나의 값을 냅니다. heatmap은 $s=1$, 곡선은 다섯 강도 전부를 사용합니다.
 
 ### S2.5. 인간 cortex에 이식한 변화
 
-**Section과 설계.** donor 세 명에게서 두 장씩 얻은 LIBD DLPFC Visium section 여섯 장을 사용했습니다. donor 순서를 맞춰 151507, 151669, 151673을 control, 151509, 151671, 151675를 treated로 두었습니다. 측정된 좌표, 수동 layer label, 공통 3,000-유전자 panel을 유지했고, treated section 세 장에서만 count를 바꿨습니다. 그래서 각 donor가 control과 treated section을 하나씩 내고, 조건 사이 비교에는 한 donor의 section 사이와 donor 사이의 실제 변동이 포함됩니다.
+**Section과 설계.** donor 세 명에게서 두 장씩 얻은 LIBD DLPFC Visium section 여섯 장을 사용했습니다. donor 순서를 맞춰 151507, 151669, 151673을 control, 151509, 151671, 151675를 treated로 두었습니다. 측정된 좌표, 수동 layer label, 공통 3,000-유전자 panel을 유지했고, 고른 유전자 40개의 count만 바꿨습니다. 그래서 각 donor가 control과 treated section을 하나씩 내고, 조건 사이 비교에는 한 donor의 section 사이와 donor 사이의 실제 변동이 포함됩니다. simulated benchmark(보충 방법 S2.2)의 세 가지 공간 변화와 global shift를 이식했고, cortex layer가 domain 역할을 하며 강도는 같은 log 척도의 $s\in\{0.5,1,1.5,2\}$(수준 1에서 4)입니다.
 
-**유전자.** 바뀌지 않은 section에서 stORCA Moran filter를 통과하고 평균 count가 0.2 이상인 유전자 중에서, 변화마다 유전자 10개와 decoy 20개를 뽑았습니다(seed 20261118). treated section 세 장에 걸쳐 평균한, 유전자의 가장 큰 layer 평균 대 section 평균 비율을 사용했습니다. 비율이 2 이상인 유전자(강한 층 패턴)는 작용할 층 패턴이 필요한 amplitude와 relocation 변화를 받았고, 1.5 미만인 유전자는 기존 layer 3 패턴에 변화가 가려지지 않도록 layer 3 증가, 절반 layer 증가, 재분배를 받았습니다. decoy는 두 계층(비율 2 이상, 1.5 미만)에서 10개씩입니다. 세 수준 모두 같은 유전자를 사용했습니다. 정답 표: [implant-truth-v2.csv](../1-BM-DSE-Semi-LIBD/res/implant-truth-v2.csv).
+**유전자.** 바뀌지 않은 section에서 stORCA Moran filter를 통과한 유전자 중 mitochondrial과 ribosomal protein 유전자(MT-, RPS, RPL)를 뺀 1,061개에서 시작해, 여섯 section 모두에 있는 layer(layer 3에서 6과 white matter)의 spot에서 평균 count가 0.3 이상인 유전자를 남겼습니다(191개). 각 유전자의 layer enrichment는 [Maynard 등, 2021](https://doi.org/10.1038/s41593-020-00787-0)의 pseudobulk 분석처럼 측정했습니다. section마다 layer별로 count를 합해 log2 counts per million으로 바꾸고, 한 layer와 나머지 layer 평균의 차이를 구한 뒤, 이 log2 fold change를 여섯 section에 걸쳐 평균했습니다. layer 패턴이 없는 유전자, 즉 모든 layer에서 log2 fold change의 절댓값이 0.5 미만인 유전자만 사용했습니다(77개). 패턴 없는 유전자를 쓰면 이식한 유전자의 layer 구조는 우리가 넣은 것뿐이고, global shift가 기존 패턴의 보이는 대비를 바꿀 수 없습니다. 평균 count가 가장 높은 패턴 없는 유전자 10개가 layer 안 이동을 받았습니다. 이동은 있던 count를 옮기는 것이라 옮길 count가 충분해야 하기 때문입니다. 나머지 유전자에서 무작위로 뽑아(seed 20261126) amplitude 변화, layer DE 변화, global shift에 10개씩 배정했습니다. amplitude 유전자는 모든 donor에 있는 cortex layer인 layer 3, 4, 5, 6에 차례로 배정했습니다(각각 3, 3, 2, 2개). 네 수준 모두 같은 유전자를 사용했습니다.
 
-**변화.** 각 treated section에서 $m_l$을 layer $l$의 유전자 평균, $\bar m$을 모든 spot의 평균, A와 B를 layer 3의 두 절반이라 합니다. 수준 1, 2, 3은 $(s,a,t)=(0.5,0.25,1/3)$, $(1,0.5,2/3)$, $(1.5,0.75,1)$을 사용했습니다.
+**두 조건 모두의 기본 패턴.** simulated benchmark에서는 바뀌는 모든 유전자가 두 조건 모두에서 이미 공간 패턴을 가지고, amplitude와 domain 안 변화는 그 패턴에 작용합니다. 그래서 먼저 amplitude와 within shift 유전자에 여섯 section 모두에서 layer 패턴을 주었습니다. 유전자의 layer(amplitude 유전자는 배정된 layer, within shift 유전자는 layer 5)의 각 spot에서 기대 count를 $e^{1}$배 했습니다. 기본 패턴은 section마다 한 번 뽑아 모든 수준에 썼으므로, control section은 모든 수준에서 같습니다. layer DE 유전자와 decoy에는 기본 패턴이 없습니다.
 
-| 변화(패널 label) | Treated section의 목표 평균 |
-|---|---|
-| Layer 3 증가(Domain DE) | $m_3\,e^{s}$ |
-| 절반 layer 증가(Within shift) | layer 3 절반 A의 평균에 $e^{s}$를 곱함 |
-| 약해진 층 패턴(Amplitude) | 각 layer: $\bar m+(1-a)(m_l-\bar m)$ |
-| 이동(Relocation) | 모든 donor에 있는 layer(3, 4, 5, 6, white matter)에서 layer $i$가 $(1-t)\,m_i+t\,m_{(i+2)\bmod 5}$를 받음 |
-| Layer 3 안 재분배(Pure shift) | $m'_B=(1-t)\,m_B$, $m'_A=m_A+t\,m_B\,n_B/n_A$; layer 총량의 기댓값 유지 |
-| Global shift(decoy) | 모든 layer: $m_l\,e^{s}$ |
+**변화.** 각 treated section에서 기본 패턴 위에, $m_5$를 layer 5의 유전자 평균, $m_A$와 $m_B$를 layer 5의 깊은 절반과 얕은 절반의 평균, $n_A$와 $n_B$를 각 절반의 spot 수라 합니다.
 
-절반 layer 증가는 layer 3 평균도 올리지만, 재분배는 그것을 유지합니다. 따라서 재분배가 layer 평균 검정이 볼 수 없는 변화입니다.
+| 변화(패널 label) | Treated section | Simulated 대응 |
+|---|---|---|
+| Layer DE | layer 5 평균을 $m_5\,e^{s}$로 올림 | Domain DE |
+| Within shift | $m'_B=(1-t)\,m_B$, $m'_A=m_A+t\,m_B\,n_B/n_A$, $t=1-e^{-s}$; layer 5 총량의 기댓값 유지 | Within-domain shift |
+| Amplitude change | 배정된 layer의 각 spot을 $e^{s}$배 해서 기본 패턴이 $e^{1}$에서 $e^{1+s}$로 커짐 | Amplitude increase |
+| Global shift(decoy) | 모든 spot을 $e^{s}$배 | Decoy |
 
-**모든 donor에서 같은 해부 위치.** layer 3의 두 절반은 layer 3 spot 좌표의 첫 번째 주축을 중앙값에서 나눠 정의했습니다. 세 donor 모두에서 절반 A가 같은 해부학적 절반이 되도록, white matter 중심에서 layer 3 중심으로 가는 벡터를 90도 회전하고 주축이 이 접선 방향을 향하도록 맞췄습니다. relocation은 모든 donor에 있는 다섯 layer에 대한 하나의 순환 순열을 사용해, 모든 donor에서 각 layer가 같은 출처 layer의 발현을 받도록 했습니다. 이전 버전(imp3v2)은 한 donor에서 절반 A가 뒤집혔고 donor마다 다른 layer 집합을 순열했습니다. Figure 2는 수정된 버전(imp3v3)을 사용합니다.
+$t=1-e^{-s}$이면 얕은 절반이 log 척도에서 $s$만큼 줄어들어($t$는 수준 1에서 4까지 0.39, 0.63, 0.78, 0.86), simulated shift의 $+s$와 맞습니다. within shift는 layer 5 평균을 유지하므로 layer 평균 검정은 이것을 볼 수 없고, layer DE 변화는 layer 5 평균을 올립니다.
 
-**Count 조작.** 그룹 평균을 $m$에서 $m'$로 올릴 때는 각 spot에 평균 $m'-m$인 독립 Poisson count를 더했고, 내릴 때는 각 count를 확률 $m'/m$로 binomial thinning했습니다. 바뀐 그룹 밖의 spot과 모든 control section은 건드리지 않았습니다. 난수 생성기 seed는 (20261121, section, 수준)이었습니다. 생성기: [06-make-implant-v3.py](../1-BM-DSE-Semi-LIBD/06-make-implant-v3.py); 목표와 실제 평균: [implant-targets-v3.csv](../1-BM-DSE-Semi-LIBD/res/implant-targets-v3.csv).
+**모든 donor에서 같은 해부 위치.** layer DE 변화와 within shift를 layer 5에 둔 것은 layer 5가 세 donor의 모든 section에 있기 때문입니다. layer 1과 2는 한 donor에 없습니다. layer 5 spot의 깊이는 가장 가까운 layer 4 spot까지의 거리이고, 깊은 절반은 깊이가 중앙값보다 큰 spot입니다. 따라서 이동은 방향을 맞추는 단계 없이도 모든 section에서 layer 6 쪽을 향합니다.
+
+**Count 조작.** spot의 기대 count를 $f>1$배 할 때는 관측 count $x$에 평균 $(f-1)\,x$인 Poisson count를 더했습니다. 한 영역의 모든 spot을 이렇게 바꾸면 그 안의 패턴 모양이 유지됩니다. 그룹 평균을 $m$에서 $m'$로 올릴 때(layer DE, 깊은 절반)는 각 spot에 평균 $m'-m$인 독립 Poisson count를 더했고, 내릴 때(얕은 절반)는 각 count를 확률 $m'/m$로 binomial thinning했습니다. 바뀐 영역 밖의 spot과 고른 40개 밖의 유전자는 건드리지 않았고, control section에는 기본 패턴만 들어 있습니다. 난수 생성기 seed는 기본 패턴에 (20261126, section, 0), 변화에 (20261126, section, 수준)이었습니다.
 
 ### S2.6. Cortex implant에서 방법 실행
 
-**stORCA.** stORCA는 본문 Methods의 replicate design을 조건 사이 쌍 9개와 조건 안 쌍 6개에 적용했습니다(SysVI 400 epoch, batch 128; ROS를 $[0,2]$로 clip; Moran과 분모 filter; source 세포 availability에 의한 조건 안 thinning; 분산 trend를 둔 limma; one-sided 검정). 유전자는 조건 사이 효과의 moderated $t$ 통계량으로 순위 매겼고, one-sided BH 보정 $P<0.05$에서 call했습니다. 실제 그룹과 다른 section 전체 재배정 9가지에 대해서도 대비를 다시 맞췄습니다.
+**stORCA.** 네 수준 각각에서 stORCA는 본문 Methods의 replicate design을 조건 사이 쌍 9개와 조건 안 쌍 6개에 적용했습니다(SysVI 400 epoch, batch 128; ROS를 $[0,2]$로 clip; Moran과 분모 filter; source 세포 availability에 의한 조건 안 thinning; 분산 trend를 둔 limma; one-sided 검정). 유전자는 조건 사이 효과의 moderated $t$ 통계량으로 순위 매겼고, one-sided BH 보정 $P<0.05$에서 call했습니다. 실제 그룹과 다른 section 전체 재배정 9가지에 대해서도 대비를 다시 맞췄습니다.
 
-**비교 방법.** 각 방법은 발표된 기본 설정으로 돌렸습니다. CODA(seed 42), River(100 epoch, seed 42), SpaceExpress(embedding 4차원, 100 epoch, spline 자유도 300, seed 42), STcompare(해상도 310의 정사각 raster, seed 42)는 조건 사이 쌍 9개 각각에서 돌렸고, 방향을 맞춘 점수를 쌍에 걸쳐 평균했습니다. implant는 count만 바꾸고 좌표는 바꾸지 않으므로, STcompare는 쌍마다 좌표만 쓰는 STalign 변환 하나를 수준에 걸쳐 재사용했습니다. DESpace2(seed 42)는 수준마다 section 여섯 장 전부에서 수동 layer label을 domain key로 한 번 돌렸습니다. 이 label은 이식 영역을 정의한 바로 그 label이므로, DESpace2는 다섯 변화 중 네 개의 정확한 domain을 받습니다. 실행기: [07-run-imp3v3.py](../1-BM-DSE-Semi-LIBD/07-run-imp3v3.py).
+**비교 방법.** 각 방법은 발표된 기본 설정으로 돌렸습니다. CODA(seed 42), River(100 epoch, seed 42), SpaceExpress(embedding 4차원, 100 epoch, spline 자유도 300, seed 42), STcompare(해상도 310의 정사각 raster, seed 42)는 조건 사이 쌍 9개 각각에서 돌렸고, 방향을 맞춘 점수를 쌍에 걸쳐 평균했습니다. implant는 count만 바꾸고 좌표는 바꾸지 않으므로, STcompare는 쌍마다 좌표만 쓰는 STalign 변환 하나를 수준에 걸쳐 재사용했습니다. DESpace2(seed 42)는 수준마다 section 여섯 장 전부에서 수동 layer label을 domain key로 한 번 돌렸습니다. 이 label은 이식 영역을 정의한 바로 그 label이므로, DESpace2는 layer DE와 amplitude 변화의 정확한 layer를 받습니다. within shift는 layer 5 안에 머물고 그 평균을 유지합니다.
 
 ### S2.7. Cortex implant 지표
 
@@ -107,7 +105,7 @@ DESpace2는 domain label이 필요하고 replicate section을 쓰므로, 정답 
 | Decoy 대비 AUROC | 모든 이식 유전자 | decoy 20개 | 2d 오른쪽 |
 | 상위 50 구성 | 상위 50개 유전자 안의 이식 유전자와 decoy 수 | | Supplementary Fig. S2 |
 
-stORCA에 대해서는 이식 유전자, 변하지 않은 유전자, decoy 중의 call 수와, 재배정 9가지에 걸친 최대 call 수도 셌습니다. 수집기: [08-collect-imp3v3.py](../1-BM-DSE-Semi-LIBD/08-collect-imp3v3.py); 값: [imp3v3-summary-metrics.csv](../1-BM-DSE-Semi-LIBD/res/imp3v3-summary-metrics.csv); 패널: [02d-fig2-dlpfc-imp3v3-panels.py](02d-fig2-dlpfc-imp3v3-panels.py).
+stORCA에 대해서는 이식 유전자, 변하지 않은 유전자, decoy 중의 call 수와, 재배정 9가지에 걸친 최대 call 수도 셌습니다.
 
 ### S2.8. 두 benchmark의 범위
 

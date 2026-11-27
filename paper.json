@@ -7,8 +7,8 @@
     {
       "id": "results-fig2",
       "tier": "main",
-      "short": "Results Fig. 2",
-      "title": "Results: Figure 2 (Controlled Benchmarks)",
+      "short": "Result (Fig. 2)",
+      "title": "Result (Figure 2)",
       "en": "main/02-results-fig2.md",
       "ko": "main/02-results-fig2.ko.md",
       "role": "results",
@@ -17,8 +17,8 @@
     {
       "id": "results-fig5",
       "tier": "main",
-      "short": "Results Fig. 5",
-      "title": "Results: Figure 5 (Pattern/Amplitude & Biology)",
+      "short": "Result (Fig. 5)",
+      "title": "Result (Figure 5)",
       "en": "main/05-results-fig5.md",
       "ko": "main/05-results-fig5.ko.md",
       "role": "results",
@@ -28,7 +28,7 @@
       "id": "methods",
       "tier": "main",
       "short": "Methods",
-      "title": "Methods: stORCA",
+      "title": "Methods",
       "en": "main/06-methods.md",
       "ko": "main/06-methods.ko.md",
       "role": "methods",
@@ -38,91 +38,41 @@
       "id": "methods-supp",
       "tier": "supplementary",
       "short": "Supp Methods",
-      "title": "Supplementary Methods (Figures 2 to 5)",
+      "title": "Supplementary Methods",
       "en": "supp/s01-methods-supp.md",
       "ko": "supp/s01-methods-supp.ko.md",
       "role": "supplementary",
-      "description": "Detailed simulation settings, DLPFC implant equations, and benchmark metrics"
+      "description": "Controlled benchmark settings, DLPFC implant equations, and evaluation metrics"
     },
     {
-      "id": "outline",
+      "id": "reviewer-qa",
       "tier": "internal",
-      "short": "Outline",
-      "title": "Manuscript Plan (Nat Commun)",
-      "en": "internal/outline.md",
-      "ko": "internal/outline.ko.md",
-      "role": "outline",
-      "description": "Internal claim hierarchy, competitor landscape, and manuscript roadmap"
-    },
-    {
-      "id": "figure-plan",
-      "tier": "internal",
-      "short": "Figure Plan",
-      "title": "Figure Blueprint (5 Main Figures)",
-      "en": "internal/figure-plan.md",
-      "ko": "internal/figure-plan.ko.md",
-      "role": "outline",
-      "description": "Internal panel-by-panel blueprint for Main Figures 1–5 and Supplementary Figures"
-    },
-    {
-      "id": "methods-v3-supp",
-      "tier": "internal",
-      "short": "Supp Archive (v3)",
-      "title": "Supplementary Methods v3 (Archive Reference)",
-      "en": "internal/supp-methods-v3-archive.md",
-      "ko": "internal/supp-methods-v3-archive.ko.md",
+      "short": "Reviewer Q&A",
+      "title": "Reviewer Q&A",
+      "en": "internal/reviewer-qa.md",
+      "ko": "internal/reviewer-qa.ko.md",
       "role": "notes",
-      "description": "Earlier supplementary draft kept as internal reference for S1 and S3–S5 before v4 rewrite"
+      "description": "Anticipated reviewer questions, concise rebuttal answers, and empirical evidence"
     },
     {
-      "id": "q1",
+      "id": "appendix-text",
       "tier": "internal",
-      "short": "Q1",
-      "title": "Q1: Unmatched Cells",
-      "en": "internal/q1-unmatched-cells.md",
-      "ko": "internal/q1-unmatched-cells.ko.md",
-      "role": "evidence",
-      "description": "Internal analysis report on tissue without a counterpart (Colitis, Cortex, HPOA)"
+      "short": "Appendix Text",
+      "title": "Appendix Text",
+      "en": "internal/appendix-text.md",
+      "ko": "internal/appendix-text.ko.md",
+      "role": "notes",
+      "description": "Working notes and draft appendix text (empty placeholder)"
     },
     {
-      "id": "q2",
+      "id": "appendix-figures",
       "tier": "internal",
-      "short": "Q2",
-      "title": "Q2: Replicate Calibration",
-      "en": "internal/q2-replicate-calibration.md",
-      "ko": "internal/q2-replicate-calibration.ko.md",
-      "role": "evidence",
-      "description": "Internal analysis report on false positives across replicates and 2x2 ablation"
-    },
-    {
-      "id": "q3",
-      "tier": "internal",
-      "short": "Q3",
-      "title": "Q3: Beyond DE",
-      "en": "internal/q3-beyond-de.md",
-      "ko": "internal/q3-beyond-de.ko.md",
-      "role": "evidence",
-      "description": "Internal analysis report comparing stORCA calls against pseudobulk DE and DESpace2"
-    },
-    {
-      "id": "q4",
-      "tier": "internal",
-      "short": "Q4",
-      "title": "Q4: Effect Size",
-      "en": "internal/q4-effect-size.md",
-      "ko": "internal/q4-effect-size.ko.md",
-      "role": "evidence",
-      "description": "Internal analysis report on cross-comparison Delta effect size (currently on hold)"
-    },
-    {
-      "id": "q5",
-      "tier": "internal",
-      "short": "Q5",
-      "title": "Q5: Pattern & Amplitude Interpretation",
-      "en": "internal/q5-interpretation.md",
-      "ko": "internal/q5-interpretation.ko.md",
-      "role": "evidence",
-      "description": "Internal analysis report on (rho, kappa) factorization and local Moran hotspots"
+      "short": "Appendix Figures",
+      "title": "Appendix Figures",
+      "en": "internal/appendix-figures.md",
+      "ko": "internal/appendix-figures.ko.md",
+      "role": "notes",
+      "description": "Working notes and draft appendix figures (empty placeholder)"
     }
   ],
   "figures": [
@@ -132,7 +82,6 @@
       "label": "Fig. 1",
       "tier": "main",
       "title": "Problem definition and stORCA overview",
-      "docId": "figure-plan",
       "assets": [
         { "path": "figures/fig1-storca-overview-nov24.png", "label": "Overview", "panels": ["a", "b", "c", "d", "e"] }
       ]
@@ -158,7 +107,6 @@
       "label": "Fig. 3",
       "tier": "main",
       "title": "Replicate calibration prevents false positives",
-      "docId": "outline",
       "assets": [
         { "path": "figures/fig3a-storca-true-vs-false.png", "label": "Panel 3a: True vs false label swaps", "panels": ["a", "b"] },
         { "path": "figures/fig3c-variance-ratio.png", "label": "Panel 3c: Variance ratio", "panels": ["c", "d", "e", "f"] }
@@ -170,7 +118,6 @@
       "label": "Fig. 4",
       "tier": "main",
       "title": "Partial OT and symmetric thinning avoid unmatched-tissue bias",
-      "docId": "outline",
       "assets": [
         { "path": "figures/fig4a-colitis-retained-mass.png", "label": "Panel 4a: Colitis retained mass", "panels": ["a"] },
         { "path": "figures/fig4b-cortex-retained-mass.png", "label": "Panel 4b: Cortex retained mass", "panels": ["b"] },
@@ -209,12 +156,45 @@
       "number": 3,
       "label": "Supp. Fig. 3",
       "tier": "supplementary",
-      "title": "Balanced vs partial OT and thinning stability",
-      "docId": "methods-v3-supp",
+      "title": "Synthetic tissue layouts and perturbed regions",
+      "docId": "methods-supp",
       "assets": [
-        { "path": "figures/figs3a-balanced-ot-ablation.png", "label": "Panel S3a: Balanced OT ablation", "panels": ["a"] },
-        { "path": "figures/figs3b-coda-common-cells.png", "label": "Panel S3b: CODA common cells", "panels": ["b"] },
-        { "path": "figures/figs3d-topk-and-thinning-stability.png", "label": "Panel S3d: Thinning stability", "panels": ["d"] }
+        { "path": "figures/sfig3a-synthetic-layouts.png", "label": "Panel S3a: Synthetic layouts", "panels": ["a"] },
+        { "path": "figures/sfig3b-synthetic-perturbed-regions.png", "label": "Panel S3b: Perturbed regions", "panels": ["b"] }
+      ]
+    },
+    {
+      "id": "supp-fig:4",
+      "number": 4,
+      "label": "Supp. Fig. 4",
+      "tier": "supplementary",
+      "title": "Synthetic gene state legend",
+      "docId": "methods-supp",
+      "assets": [
+        { "path": "figures/sfig4-synthetic-genes-state-legend.png", "label": "Supplementary Fig. 4 legend" }
+      ]
+    },
+    {
+      "id": "supp-fig:5",
+      "number": 5,
+      "label": "Supp. Fig. 5",
+      "tier": "supplementary",
+      "title": "Human DLPFC benchmark sections and layer-5 halves",
+      "docId": "methods-supp",
+      "assets": [
+        { "path": "figures/sfig5a-libd-used-sections-layers.png", "label": "Panel S5a: Used sections & layers", "panels": ["a"] },
+        { "path": "figures/sfig5b-libd-used-sections-layer5-halves.png", "label": "Panel S5b: Layer 5 halves", "panels": ["b"] }
+      ]
+    },
+    {
+      "id": "supp-fig:6",
+      "number": 6,
+      "label": "Supp. Fig. 6",
+      "tier": "supplementary",
+      "title": "Human DLPFC implanted genes state legend",
+      "docId": "methods-supp",
+      "assets": [
+        { "path": "figures/sfig6-libd-implanted-genes-state-legend.png", "label": "Supplementary Fig. 6 legend" }
       ]
     }
   ],

@@ -1,6 +1,4 @@
-# 연구 방법: stORCA
-
-프로젝트 원고 문체(`.claude/skills/manuscript-style/SKILL.md`)로 쓴 stORCA 알고리즘의 본문 Methods입니다. `0-method-v3.md`의 알고리즘 섹션(2 to 4)을 대체하며, 그 파일의 데이터셋과 case study 섹션은 그대로입니다. Figure 2 패널별 설정은 보충 방법([English](0-method-v4-supplementary.md) · [한국어](0-method-v4-supplementary.ko.md))에 있습니다.
+# Methods
 
 ## 개요
 
@@ -94,4 +92,4 @@ Figure 2를 위해 여섯 가지 설계된 변화를 가진 simulated tissue를 
 
 ## 소프트웨어
 
-stORCA는 Python 3.11, scvi-tools 1.4.2, PyTorch 2.8.0, Scanpy 1.11.5, AnnData 0.12.6을 사용했고, transport scaling은 double precision으로, limma empirical Bayes 절차는 Python 구현으로 계산했습니다. 코드는 transport marginal, sampling된 matching, matching별 이차형식을 저장하므로, 모든 쌍 점수와 그 분해를 모델을 다시 맞추지 않고 재계산할 수 있습니다. [Replicate analysis](../storca/replicate_case_studies.py) · [Scoring](../storca/scoring.py) · [Variance moderation](../storca/limma.py) · [Decomposition](../storca/interpret.py)
+stORCA는 Python 3.11, scvi-tools 1.4.2, PyTorch 2.8.0, Scanpy 1.11.5, AnnData 0.12.6을 사용했고, transport scaling은 double precision으로, limma empirical Bayes 절차는 Python 구현으로 계산했습니다. 코드는 transport marginal, sampling된 matching, matching별 이차형식을 저장하므로, 모든 쌍 점수와 그 분해를 모델을 다시 맞추지 않고 재계산할 수 있습니다.

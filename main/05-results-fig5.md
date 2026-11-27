@@ -1,6 +1,4 @@
-# Results: Figure 5
-
-Draft of the Figure 5 Results section and legend, written in the project manuscript style (`.claude/skills/manuscript-style/SKILL.md`). The section follows the flow for interpretation sections approved on 2026-11-25: framing questions, validation with known changes, the datasets, one evidence block per question, an external biological check, then the limits. Numbers come from the source tables in `0-Paper-Draft/fig/fig5-tables/` and from the Q3 and Q5 reports ([Q3](../5-Case-Study-Comparison/13-q3-beyond-de.md) · [Q5](../5-Case-Study-Comparison/15-q5-interpretation.md)). The panel settings are in the supplementary methods ([English](0-method-v4-supplementary.md) · [한국어](0-method-v4-supplementary.ko.md)); the Figure 5 section there is still to be added, and the earlier version is S5 of `0-method-v3-supplementary.md`.
+# Result (Figure 5)
 
 ## stORCA types and locates each change, beyond what DE calls
 

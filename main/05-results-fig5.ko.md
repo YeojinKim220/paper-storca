@@ -1,6 +1,4 @@
-# 결과: Figure 5
-
-프로젝트 원고 문체(`.claude/skills/manuscript-style/SKILL.md`)로 쓴 Figure 5 결과 섹션과 legend 초안입니다. 섹션은 2026-11-25에 승인된 해석 섹션 흐름을 따릅니다: 질문 제시, 종류를 아는 변화로 검증, 데이터셋, 질문마다 하나의 증거 묶음, 외부 생물학 검증, 한계. 수치는 `0-Paper-Draft/fig/fig5-tables/`의 원천 표와 Q3, Q5 보고서([Q3](../5-Case-Study-Comparison/13-q3-beyond-de.md) · [Q5](../5-Case-Study-Comparison/15-q5-interpretation.md))에서 읽었습니다. 패널 설정은 보충 방법([English](0-method-v4-supplementary.md) · [한국어](0-method-v4-supplementary.ko.md))에 들어갈 예정이며, Figure 5 섹션은 아직 추가되지 않았고 이전 버전은 `0-method-v3-supplementary.md`의 S5입니다.
+# Result (Figure 5)
 
 ## stORCA는 각 변화의 종류와 위치를 밝히며, DE가 call하지 않는 변화도 찾는다
 
