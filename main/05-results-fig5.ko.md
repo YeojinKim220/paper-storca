@@ -22,6 +22,18 @@ NRDR call의 방향은 원 연구와 일치합니다(Fig. 5f). 원 연구는 암
 
 이 해석에는 수치로 드러나는 한계가 있습니다. NRDR 예시는 layer 검정이 볼 수 없는 변화가 아닙니다. L4에서 *Prkca*와 *Trpc3*는 정상 사육 section 두 장이 모두 암사육 section 두 장보다 높습니다(보정 전 *P* = 0.006, 0.008). Layer 검정 2,000개에 대한 보정에는 *P* < 0.0019가 필요했습니다. 앞쪽 section을 더해 조건당 네 장으로 했을 때, pseudobulk DE는 뒤쪽의 non-DE call 19개 중 15개를 call했고 두 유전자도 포함되었습니다. 측정한 그대로의 주장은, 조건당 section 두 장에서 DE 검정이 call하지 않은 변화를 stORCA가 call했다는 것입니다. ARTISTA에서 DE call이 없는 call 29개는 발현이 희소한 유전자이고 지도에서 눈에 보이는 차이가 없으므로, ARTISTA는 예시가 아니라 개수를 뒷받침합니다. Type은 조건 사이 쌍을 요약하며, replicate를 넘는 초과분에서도 call의 66%에서 91%가 같은 type을 유지합니다. 마지막으로 colitis의 replicate는 technical replicate이므로, 그 386개 call은 다른 비교와 개수로 비교할 수 없습니다.
 
+![Fig. 5a | 시뮬레이션에서의 pattern·amplitude 분해 검증](../figures/fig5a-1-synthetic-decomposition.png)
+
+![Fig. 5b | 다섯 반복 비교에서의 변화 유형 분포](../figures/fig5b-1-real-rho-kappa-plane.png)
+
+![Fig. 5c | NRDR 시각피질에서의 공간 residual 국소화](../figures/fig5c-1-nrdr-local-moran-examples.png)
+
+![Fig. 5d | Pseudobulk DE 및 DESpace2와의 호출 겹침](../figures/fig5d-de-dse-overlap-and-types.png)
+
+![Fig. 5e | 조건당 2장 설계에서 DE·DESpace2가 놓친 NRDR 호출 유전자](../figures/fig5e-1-non-global-de-examples.png)
+
+![Fig. 5f | NRDR 시각피질 생물학 검증 및 층 구조 변화](../figures/fig5f-biological-validation-and-laminar-shift.png)
+
 ## Figure 5 legend
 
 **Fig. 5 | stORCA는 각 변화의 종류와 위치를 밝히며, DE가 call하지 않는 변화도 찾는다.** **a**, 종류를 아는 시뮬레이션 변화에서 pattern 항과 amplitude 항의 검증. 왼쪽, amplitude($\kappa$)와 pattern($\rho_W$) 평면 위의 모든 시뮬레이션 유전자. 원은 대비 크기(0에서 2)로 색칠한 amplitude 시리즈(유전자 10개, 조건 사이 쌍 9개의 중앙값), 삼각형은 부호 뒤집기 확률 *p*로 색칠한 pattern 시리즈. 가운데, *p*에 따른 $\rho_W$(상자는 사분위 범위, 수염은 5번째와 95번째 백분위, 마름모는 평균, 점선은 $1-2p$; profile 36,000개, 모두 $\kappa$ = 1.000). 오른쪽, 대비 크기에 따른 $\rho_W$와 $\kappa$의 평균(띠는 유전자 10개의 범위). 아래, 두 시리즈에서 한 유전자의 centered 발현과, 각 지도 위의 $\kappa$와 $\rho_W$. **b**, replicate 비교 다섯 개의 변화 type. 왼쪽, 검정한 각 유전자를 조건 사이 쌍의 $\kappa$와 $\rho_W$ 중앙값에 표시. 색은 type별 call, 회색은 call되지 않은 유전자, 점선은 같은 ROS(0.2에서 0.8). Call: ARTISTA 검정 유전자 775개 중 113개, NRDR 뒤쪽 377개 중 32개, NRDR 앞쪽 362개 중 11개, HPOA 148개 중 11개, colitis 480개 중 386개. 가운데, 조건 사이 쌍으로 매긴 type과 조건 안 쌍을 넘는 초과분으로 매긴 type의 비율. 숫자는 type별 call 수와 type을 유지한 call 수. 오른쪽, ARTISTA의 *CDKN1B*(amplitude)와 *FABP7*(pattern): 2 DPI와 20 DPI의 발현(log1p), matching된 한 쌍의 차이, 조건 사이 쌍 9개 각각의 compartment별 평균 residual(막대는 중앙값). **c**, NRDR 뒤쪽(정상 사육 2장, 암사육 2장)에서 residual의 위치. 왼쪽, pia를 위로 둔 layer annotation. 가운데, *Stard8*, *Trpc3*, *Arc*: smoothing한 발현(최근접 이웃 30개), 암사육 빼기 정상 사육의 차이, 한 쌍의 residual hotspot 세포(local Moran's *I*, high-high, permutation *P* < 0.05). 오른쪽, hotspot 세포의 layer enrichment(hypergeometric 검정, 네 layer에 대한 BH; 점은 조건 사이 쌍 네 개). 아래, 조건 사이 쌍 네 개 중 세 개 이상에서 layer 또는 cell type에 enrichment된 call 수와, 유전자별 enrichment 중앙값. **d**, stORCA가 검정한 유전자에서 pseudobulk DE(global 또는 domain별, limma, BH 보정 *P* < 0.05) 및 DESpace2(FDR < 0.05)와의 겹침. 왼쪽, 다른 검정의 call로 나눈 stORCA call. 막대 위 숫자는 어느 쪽도 call하지 않은 call. 가운데, ARTISTA와 NRDR 뒤쪽의 겹침 영역별 유전자 수. 오른쪽, DE call이 없는(only) 그리고 있는(+DE) stORCA call의 type. **e**, 조건당 section 두 장에서 다른 검정이 call하지 않은 NRDR call. 위, layer DE이지만 global DE나 DESpace2 call은 아닌 *Stard8*, *Scube1*. 아래, 어느 layer에서도 DE가 아닌 *Prkca*, *Trpc3*, *Slc24a3*. 각 줄은 네 section 모두의 smoothing한 발현, layer별 평균 발현(파랑 정상 사육, 빨강 암사육; 실선과 점선은 두 동물), 각 검정의 보정 *P* 값을 보여줍니다. **f**, NRDR 뒤쪽의 생물학 검증. 왼쪽, activity 유전자 11개의 공간 amplitude 비 $h$ 대 pseudobulk log<sub>2</sub> fold change(빨강 call, 회색 call 아님; 유전자 11개의 Pearson *r*). 가운데, call된 activity 유전자 7개의 amplitude 비율 $s$, 조건 사이 쌍과 조건 안 쌍을 넘는 초과분 각각(음영은 amplitude type, $s>2/3$). 오른쪽, L4 띠 안 L2/3 label neuron의 비율과, pia에서 L5까지로 정규화한 L4, L2/3, L5의 폭(막대는 평균, 점은 조건당 section 4장, 뒤쪽과 앞쪽).

@@ -10,7 +10,7 @@ stORCA는 한 유전자의 공간 패턴이 두 조건 사이에서, 같은 조�
 
 ## 쌍마다 공유된 cell state 학습
 
-순서가 있는 source와 target 쌍마다, 두 section의 정규화된 발현에 cross-system variational inference 모델(SysVI)을 맞췄고, section 출처를 system covariate로 두었습니다. section covariate를 두면 decoder가 section 사이의 측정 차이를 흡수하므로, 15차원 latent state가 두 section이 공유하는 척도에서 cell state를 나타냅니다. encoder와 decoder는 각각 batch normalization, ReLU, dropout 0.1을 쓴 256-unit hidden layer 두 개를 가졌고, 모든 hidden layer에서 section label을 받았습니다. 학습은 Gaussian 재구성 손실, 다섯 성분 VampPrior에 대한 Kullback–Leibler 항, 그리고 section label을 바꿨을 때 encoding된 상태가 변하는 것을 벌하는 가중치 5의 cycle-consistency 항을 최소화했습니다. 400 epoch, 128 세포 batch, Adam(learning rate $10^{-3}$, weight decay $10^{-6}$), seed 42로 학습했고, 모든 세포의 posterior mean $\mu_i$를 사용했습니다. 공간 좌표는 학습에 쓰이지 않으며, 아래에서 neighborhood를 만들 때만 들어갑니다. 보충 노트 S1에 scvi-tools 1.4.2에 구현된 손실 항을 적었습니다.
+순서가 있는 source와 target 쌍마다, 두 section의 정규화된 발현에 cross-system variational inference 모델(SysVI)을 맞췄고, section 출처를 system covariate로 두었습니다. section covariate를 두면 decoder가 section 사이의 측정 차이를 흡수하므로, 15차원 latent state가 두 section이 공유하는 척도에서 cell state를 나타냅니다. encoder와 decoder는 각각 batch normalization, ReLU, dropout 0.1을 쓴 256-unit hidden layer 두 개를 가졌고, 모든 hidden layer에서 section label을 받았습니다. 학습은 Gaussian 재구성 손실, 다섯 성분 VampPrior에 대한 Kullback–Leibler 항, 그리고 section label을 바꿨을 때 encoding된 상태가 변하는 것을 벌하는 가중치 5의 cycle-consistency 항을 최소화했습니다.<!-- link: reviewer-qa#q12-shared-sysvi-hyperparameters-across-datasets --> 400 epoch, 128 세포 batch, Adam(learning rate $10^{-3}$, weight decay $10^{-6}$), seed 42로 학습했고, 모든 세포의 posterior mean $\mu_i$를 사용했습니다. 공간 좌표는 학습에 쓰이지 않으며, 아래에서 neighborhood를 만들 때만 들어갑니다. 보충 노트 S1에 scvi-tools 1.4.2에 구현된 손실 항을 적었습니다.
 
 ## Partial optimal transport로 조직 matching
 
@@ -43,7 +43,7 @@ $$
 \mathrm{ROS}=\frac{\sum_m q_m(x_m-y_m)}{\sum_m\bigl[q_m(x_m)+q_m(y_m)\bigr]} .
 $$
 
-분자는 matching된 차이의 공간 구조이고, 분모는 두 발현 field 자체의 공간 구조입니다. 두 field의 패턴과 세기가 같으면 ROS는 0, 공간 구조를 전혀 공유하지 않으면 1, 패턴이 반대면 2입니다. 이 형태에서 세 가지 성질이 나옵니다. 첫째, centering이 점수 척도에서 모든 세포에 같은 변화를 제거하므로 global shift는 ROS를 올리지 않습니다. 둘째, ROS는 amplitude에 반응합니다. $y=ax$이면 두 field의 공간 correlation은 1이지만 $\mathrm{ROS}=(1-a)^2/(1+a^2)$이고, 두 배가 되면 0.2입니다. 셋째, ROS는 residual을 residual 자신의 분산이 아니라(residual의 Moran's $I$가 하는 방식) 원래 field의 구조로 나눕니다. 그래서 모양이 같은 약한 residual과 강한 residual이 다른 점수를 받습니다. $W_m$은 대각이 0이고 음의 고윳값을 가질 수 있으므로 유한한 raw ROS가 $[0,2]$를 약간 벗어날 수 있으며, replicate 추론에서는 이 구간으로 clip했습니다.
+분자는 matching된 차이의 공간 구조이고, 분모는 두 발현 field 자체의 공간 구조입니다. 두 field의 패턴과 세기가 같으면 ROS는 0, 공간 구조를 전혀 공유하지 않으면 1, 패턴이 반대면 2입니다. 이 형태에서 세 가지 성질이 나옵니다. 첫째, centering이 점수 척도에서 모든 세포에 같은 변화를 제거하므로 global shift는 ROS를 올리지 않습니다. 둘째, ROS는 amplitude에 반응합니다. $y=ax$이면 두 field의 공간 correlation은 1이지만 $\mathrm{ROS}=(1-a)^2/(1+a^2)$이고, 두 배가 되면 0.2입니다. 셋째, ROS는 residual을 residual 자신의 분산이 아니라(residual의 Moran's $I$가 하는 방식) 원래 field의 구조로 나눕니다. 그래서 모양이 같은 약한 residual과 강한 residual이 다른 점수를 받습니다. $W_m$은 대각이 0이고 음의 고윳값을 가질 수 있으므로 유한한 raw ROS가 $[0,2]$를 약간 벗어날 수 있으며, replicate 추론에서는 이 구간으로 clip했습니다.<!-- link: reviewer-qa#q7-clipping-ros-to-0-2-and-moran-filtering -->
 
 ## 패턴과 amplitude 분리
 
@@ -80,7 +80,7 @@ $$
 
 조건 사이 쌍에서 $B_p=1$입니다. 그룹 크기가 다르면 $H_p$를 추가해(첫 그룹 안 $-\tfrac12$, 두 번째 그룹 안 $+\tfrac12$, 조건 사이 0), $\beta_g$가 조건 사이 쌍을 두 조건 안 그룹의 동일 가중 평균과 비교하도록 했습니다. 유전자당 쌍이 몇 개뿐이라 유전자별 분산이 불안정하고, 그 크기는 유전자가 가진 공간 구조의 양에 따라 달라집니다. 그래서 평균 log 중앙값 $z_m$에 대한 분산 trend를 둔 limma empirical Bayes 절차로 분산을 조정했습니다. 조건 사이 차이가 replicate 차이를 넘는 것만이 조건 효과의 증거이므로 $\beta_g>0$을 one-sided로 검정했고, 검정한 유전자 전체에 Benjamini–Hochberg 보정을 적용해 보정 $P<0.05$에서 call했습니다. 각 쌍의 가중치는 같습니다.
 
-section 쌍들은 section을 공유하므로 독립이 아닙니다. call이 특정 section이 아니라 조건 label에 의존하는지 확인하기 위해, section 전체를 원래 크기의 두 그룹으로 다시 배정하는 모든 경우(3 대 3에서 실제 배정을 포함해 서로 다른 분할 10개)에 대해 대비를 다시 맞췄고, plan, thinning, 유전자 적격성은 고정했습니다.
+section 쌍들은 section을 공유하므로 독립이 아닙니다. call이 특정 section이 아니라 조건 label에 의존하는지 확인하기 위해, section 전체를 원래 크기의 두 그룹으로 다시 배정하는 모든 경우(3 대 3에서 실제 배정을 포함해 서로 다른 분할 10개)에 대해 대비를 다시 맞췄고, plan, thinning, 유전자 적격성은 고정했습니다.<!-- link: reviewer-qa#q9-non-independence-of-section-pairs-in-3-vs-3-replicate-designs -->
 
 ## Single-pair 점수
 

@@ -37,12 +37,22 @@
     {
       "id": "methods-supp",
       "tier": "supplementary",
-      "short": "Supp Methods",
+      "short": "Supp. Methods",
       "title": "Supplementary Methods",
       "en": "supp/s01-methods-supp.md",
       "ko": "supp/s01-methods-supp.ko.md",
       "role": "supplementary",
       "description": "Controlled benchmark settings, DLPFC implant equations, and evaluation metrics"
+    },
+    {
+      "id": "supp-figs",
+      "tier": "supplementary",
+      "short": "Supp. Figs.",
+      "title": "Supplementary Figures",
+      "en": "supp/s02-supp-figures.md",
+      "ko": "supp/s02-supp-figures.ko.md",
+      "role": "supplementary",
+      "description": "Supplementary figures with embedded panels and legends"
     },
     {
       "id": "reviewer-qa",
@@ -146,7 +156,7 @@
       "label": "Supp. Fig. 2",
       "tier": "supplementary",
       "title": "Supplementary benchmark metrics (AUPRC & top-ranked decoys)",
-      "docId": "methods-supp",
+      "docId": "supp-figs",
       "assets": [
         { "path": "figures/figs2-v3-synthetic-auroc-auprc-sd-s1.png", "label": "Supplementary Fig. 2", "panels": ["a", "b", "c", "d", "e"] }
       ]
@@ -157,7 +167,7 @@
       "label": "Supp. Fig. 3",
       "tier": "supplementary",
       "title": "Synthetic tissue layouts and perturbed regions",
-      "docId": "methods-supp",
+      "docId": "supp-figs",
       "assets": [
         { "path": "figures/sfig3a-synthetic-layouts.png", "label": "Panel S3a: Synthetic layouts", "panels": ["a"] },
         { "path": "figures/sfig3b-synthetic-perturbed-regions.png", "label": "Panel S3b: Perturbed regions", "panels": ["b"] }
@@ -169,7 +179,7 @@
       "label": "Supp. Fig. 4",
       "tier": "supplementary",
       "title": "Synthetic gene state legend",
-      "docId": "methods-supp",
+      "docId": "supp-figs",
       "assets": [
         { "path": "figures/sfig4-synthetic-genes-state-legend.png", "label": "Supplementary Fig. 4 legend" }
       ]
@@ -180,7 +190,7 @@
       "label": "Supp. Fig. 5",
       "tier": "supplementary",
       "title": "Human DLPFC benchmark sections and layer-5 halves",
-      "docId": "methods-supp",
+      "docId": "supp-figs",
       "assets": [
         { "path": "figures/sfig5a-libd-used-sections-layers.png", "label": "Panel S5a: Used sections & layers", "panels": ["a"] },
         { "path": "figures/sfig5b-libd-used-sections-layer5-halves.png", "label": "Panel S5b: Layer 5 halves", "panels": ["b"] }
@@ -192,7 +202,7 @@
       "label": "Supp. Fig. 6",
       "tier": "supplementary",
       "title": "Human DLPFC implanted genes state legend",
-      "docId": "methods-supp",
+      "docId": "supp-figs",
       "assets": [
         { "path": "figures/sfig6-libd-implanted-genes-state-legend.png", "label": "Supplementary Fig. 6 legend" }
       ]
