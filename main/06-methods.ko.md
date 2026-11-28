@@ -10,7 +10,7 @@ stORCA는 한 유전자의 공간 패턴이 두 조건 사이에서, 같은 조�
 
 ## 쌍마다 공유된 cell state 학습
 
-순서가 있는 source와 target 쌍마다, 두 section의 정규화된 발현에 cross-system variational inference 모델(SysVI)을 맞췄고, section 출처를 system covariate로 두었습니다. section covariate를 두면 decoder가 section 사이의 측정 차이를 흡수하므로, 15차원 latent state가 두 section이 공유하는 척도에서 cell state를 나타냅니다. encoder와 decoder는 각각 batch normalization, ReLU, dropout 0.1을 쓴 256-unit hidden layer 두 개를 가졌고, 모든 hidden layer에서 section label을 받았습니다. 학습은 Gaussian 재구성 손실, 다섯 성분 VampPrior에 대한 Kullback–Leibler 항, 그리고 section label을 바꿨을 때 encoding된 상태가 변하는 것을 벌하는 가중치 5의 cycle-consistency 항을 최소화했습니다.<!-- link: reviewer-qa#q12-shared-sysvi-hyperparameters-across-datasets --> 400 epoch, 128 세포 batch, Adam(learning rate $10^{-3}$, weight decay $10^{-6}$), seed 42로 학습했고, 모든 세포의 posterior mean $\mu_i$를 사용했습니다. 공간 좌표는 학습에 쓰이지 않으며, 아래에서 neighborhood를 만들 때만 들어갑니다. 보충 노트 S1에 scvi-tools 1.4.2에 구현된 손실 항을 적었습니다.
+순서가 있는 source와 target 쌍마다, 두 section의 정규화된 발현에 cross-system variational inference 모델(SysVI)을 맞췄고, section 출처를 system covariate로 두었습니다. section covariate를 두면 decoder가 section 사이의 측정 차이를 흡수하므로, 15차원 latent state가 두 section이 공유하는 척도에서 cell state를 나타냅니다. encoder와 decoder는 각각 batch normalization, ReLU, dropout 0.1을 쓴 256-unit hidden layer 두 개를 가졌고, 모든 hidden layer에서 section label을 받았습니다. 학습은 Gaussian 재구성 손실, 다섯 성분 VampPrior에 대한 Kullback–Leibler 항, 그리고 section label을 바꿨을 때 encoding된 상태가 변하는 것을 벌하는 가중치 5의 cycle-consistency 항을 최소화했습니다.<!-- link: reviewer-qa#q12-shared-sysvi-hyperparameters-across-datasets --> 400 epoch, 128 세포 batch, Adam(learning rate $10^{-3}$, weight decay $10^{-6}$), seed 42로 학습했고, 모든 세포의 posterior mean $\mu_i$를 사용했습니다. 공간 좌표는 학습에 쓰이지 않으며, 아래에서 neighborhood를 만들 때만 들어갑니다.
 
 ## Partial optimal transport로 조직 matching
 
@@ -61,7 +61,7 @@ $\rho_W$는 두 패턴의 공간 가중 correlation이고, $\kappa$는 두 패�
 
 다른 조건의 두 section 사이 차이에는 임의의 두 section 사이 차이가 포함되며, 같은 조건의 replicate section도 이미 이런 차이를 보입니다. replicate design은 이 기준선을 직접 측정합니다. 모든 조건 사이 쌍을 control에서 treated 방향으로, 모든 조건 안 쌍을 한 번씩 점수 매겼으므로, 조건당 section 세 장이면 조건 사이 쌍 9개와 조건 안 쌍 6개가 나옵니다.
 
-조건 안 쌍은 다른 조건에 대응이 없는 조직을 공유할 수 있고, 그러면 기준선이 실제보다 더 비슷해 보입니다. 같은 것끼리 비교하기 위해, 각 세포의 유지 비율을 모든 조건 사이 partner에 걸쳐 평균했고, 이 availability를 조건 안 matching에서 세포를 유지할 확률로 썼습니다. 그다음 제한된 graph와 이차형식을 다시 계산했습니다. Figure 2, 3, 5의 분석에서는 source 세포의 availability를 사용했고, Figure 4의 injury 비교에서는 source 세포와 sampling된 partner의 availability 중 작은 값을 사용했습니다(보충 노트 S4).
+조건 안 쌍은 다른 조건에 대응이 없는 조직을 공유할 수 있고, 그러면 기준선이 실제보다 더 비슷해 보입니다. 같은 것끼리 비교하기 위해, 각 세포의 유지 비율을 모든 조건 사이 partner에 걸쳐 평균했고, 이 availability를 조건 안 matching에서 세포를 유지할 확률로 썼습니다. 그다음 제한된 graph와 이차형식을 다시 계산했습니다. Figure 2, 3, 5의 분석에서는 source 세포의 availability를 사용했고, Figure 4의 injury 비교에서는 source 세포와 sampling된 partner의 availability 중 작은 값을 사용했습니다.
 
 pair들이 측정할 수 있는 공간 구조를 가진 유전자를 검정했습니다. 유전자는 먼저 적어도 한 section graph에서 Moran's $I>0.03$이어야 했으며, 이 filter는 조건 label을 쓰지 않습니다. 각 쌍과 matching에 대해 분모 $D_m=q_m(x_m)+q_m(y_m)$을 centering된 값의 독립 무작위 부호 아래 표준편차로 표준화했습니다.
 
